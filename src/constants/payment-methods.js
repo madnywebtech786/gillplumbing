@@ -1,0 +1,10 @@
+export const PAYMENT_METHOD = {
+  CASH: "CASH",
+  CARD: "CARD",
+  BANK_TRANSFER: "BANK_TRANSFER",
+  CHEQUE: "CHEQUE",
+  E_TRANSFER: "E_TRANSFER",
+  OTHER: "OTHER",
+};
+
+export const ALL_PAYMENT_METHODS = Object.values(PAYMENT_METHOD);

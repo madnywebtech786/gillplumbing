@@ -1,26 +1,264 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-paper: #f7f4ef;
+  --color-paper-raised: #ffffff;
+  --color-ink: #1a1815;
+  --color-ink-muted: #6b6358;
+  --color-border: #e4dfd5;
+
+  --color-accent: #b5542c;
+  --color-accent-hover: #9c4522;
+  --color-accent-soft: #f3e2d8;
+
+  --color-success: #4d7c58;
+  --color-success-soft: #e3ece4;
+  --color-warning: #a3791f;
+  --color-warning-soft: #f3ecd9;
+  --color-danger: #a13f32;
+  --color-danger-soft: #f2e0dc;
+  --color-info: #3e6f8c;
+  --color-info-soft: #e1ebf0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"] {
+  --color-paper: #1c1917;
+  --color-paper-raised: #262220;
+  --color-ink: #f2ede4;
+  --color-ink-muted: #a89d8d;
+  --color-border: #3a3430;
+
+  --color-accent: #d97a4e;
+  --color-accent-hover: #e8926a;
+  --color-accent-soft: #3a2a22;
+
+  --color-success: #7fae8a;
+  --color-success-soft: #273229;
+  --color-warning: #c9a04a;
+  --color-warning-soft: #332c1d;
+  --color-danger: #d1766a;
+  --color-danger-soft: #332421;
+  --color-info: #7fa9c4;
+  --color-info-soft: #22303a;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --color-paper: #1c1917;
+    --color-paper-raised: #262220;
+    --color-ink: #f2ede4;
+    --color-ink-muted: #a89d8d;
+    --color-border: #3a3430;
+
+    --color-accent: #d97a4e;
+    --color-accent-hover: #e8926a;
+    --color-accent-soft: #3a2a22;
+
+    --color-success: #7fae8a;
+    --color-success-soft: #273229;
+    --color-warning: #c9a04a;
+    --color-warning-soft: #332c1d;
+    --color-danger: #d1766a;
+    --color-danger-soft: #332421;
+    --color-info: #7fa9c4;
+    --color-info-soft: #22303a;
   }
 }
 
+@theme inline {
+  --color-paper: var(--color-paper);
+  --color-paper-raised: var(--color-paper-raised);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-success: var(--color-success);
+  --color-success-soft: var(--color-success-soft);
+  --color-warning: var(--color-warning);
+  --color-warning-soft: var(--color-warning-soft);
+  --color-danger: var(--color-danger);
+  --color-danger-soft: var(--color-danger-soft);
+  --color-info: var(--color-info);
+  --color-info-soft: var(--color-info-soft);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), serif;
+}
+
+/* FullCalendar theme override to match the Field Ledger palette instead of
+   its default blue theme (spec 20: consistent visual language). */
+.calendar-shell {
+  --fc-border-color: var(--color-border);
+  --fc-page-bg-color: var(--color-paper-raised);
+  --fc-neutral-bg-color: var(--color-paper);
+  --fc-list-event-hover-bg-color: var(--color-paper);
+  --fc-today-bg-color: var(--color-accent-soft);
+  --fc-button-bg-color: var(--color-paper-raised);
+  --fc-button-border-color: var(--color-border);
+  --fc-button-hover-bg-color: var(--color-paper);
+  --fc-button-hover-border-color: var(--color-border);
+  --fc-button-active-bg-color: var(--color-accent);
+  --fc-button-active-border-color: var(--color-accent);
+  font-family: var(--font-body), system-ui, sans-serif;
+  color: var(--color-ink);
+}
+
+.calendar-shell .fc-toolbar-title {
+  font-family: var(--font-display), serif;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+}
+
+.calendar-shell .fc-button {
+  text-transform: none;
+  box-shadow: none !important;
+  color: var(--color-ink);
+}
+
+.calendar-shell .fc-button-primary:not(:disabled).fc-button-active {
+  color: white;
+}
+
+.calendar-shell .fc-daygrid-day-number,
+.calendar-shell .fc-col-header-cell-cushion {
+  color: var(--color-ink);
+}
+
+.calendar-shell .fc-col-header-cell-cushion {
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+}
+
+.calendar-shell .fc-daygrid-day-frame {
+  padding: 2px;
+}
+
+.calendar-shell .fc-daygrid-day-top {
+  padding: 4px 6px 2px;
+}
+
+.calendar-shell .fc-daygrid-day-number {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.calendar-shell .fc-day-today .fc-daygrid-day-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: white;
+  font-weight: 600;
+}
+
+/* Event tiles: a soft tinted background with a left accent bar per status,
+   mirroring the Badge tone system instead of the flat solid-color chips
+   FullCalendar renders by default. Colors are set per status below and
+   consumed via currentColor so one rule styles every view. */
+.calendar-shell .fc-event {
+  border: none;
+  background: color-mix(in srgb, currentColor 12%, var(--color-paper-raised));
+  border-radius: 6px;
+  padding: 0;
+  margin: 1px 2px;
+  box-shadow: inset 2.5px 0 0 0 currentColor;
+  transition: box-shadow 0.12s ease, transform 0.08s ease;
+}
+
+.calendar-shell .fc-daygrid-event {
+  box-shadow: inset 2.5px 0 0 0 currentColor;
+}
+
+.calendar-shell .fc-event:hover {
+  box-shadow: inset 3.5px 0 0 0 currentColor, 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-0.5px);
+}
+
+.calendar-shell .fc-event:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+/* Cancelled bookings are excluded from the calendar feed entirely (still
+   visible in the booking list/detail history per spec 5.4), so no
+   .fc-status-cancelled rule is needed here. */
+.calendar-shell .fc-status-scheduled { color: var(--color-warning); }
+.calendar-shell .fc-status-confirmed { color: var(--color-accent); }
+.calendar-shell .fc-status-in-progress { color: var(--color-info); }
+.calendar-shell .fc-status-completed { color: var(--color-success); }
+
+.calendar-shell .fc-event-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 3px 6px;
+  color: var(--color-ink);
+  overflow: hidden;
+}
+
+.calendar-shell .fc-event-tile-top {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+}
+
+.calendar-shell .fc-event-tile-time {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: currentColor;
+  white-space: nowrap;
+}
+
+.calendar-shell .fc-event-tile-service {
+  font-size: 0.75rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-shell .fc-event-tile-customer {
+  font-size: 0.6875rem;
+  color: var(--color-ink-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-shell .fc-event-tile-assignee {
+  color: var(--color-ink-muted);
+}
+
+/* Time-grid (day/week) events get more room, so show the customer line
+   even though the block itself is already taller. */
+.calendar-shell .fc-timegrid-event .fc-event-tile {
+  padding: 4px 7px;
+}
+
+.calendar-shell .fc-timegrid-event .fc-event-tile-service {
+  font-size: 0.8125rem;
+}
+
+.calendar-shell .fc-daygrid-more-link {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-accent);
 }
